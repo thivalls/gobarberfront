@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { shade } from 'polished';
 
-import bgSignIn from '../../assets/sign-in-background.png';
+import bgSignUp from '../../assets/sign-up-background.png';
 
 export const Container = styled.div`
   height: 100vh;
@@ -12,7 +12,7 @@ export const Container = styled.div`
 
 export const Background = styled.div`
   flex: 1;
-  background: url(${bgSignIn}) no-repeat center;
+  background: url(${bgSignUp}) no-repeat center;
   background-size: cover;
 `;
 
@@ -34,29 +34,18 @@ export const LoginArea = styled.div`
     h1 {
       margin-bottom: 24px;
     }
-
-    > a {
-      color: #f4ede8;
-      text-decoration: none;
-      margin-top: 24px;
-      display: block;
-      transition: color 0.2s;
-
-      &:hover {
-        color: ${shade(0.2, '#f4ede8')};
-      }
-    }
   }
 
   > a {
-    color: #ff9000;
+    color: #f4ede8;
     text-decoration: none;
     display: flex;
     align-items: center;
-    transition: color 0.2s;
+    transition: transform 0.2s, color 0.2s;
 
     &:hover {
-      color: ${shade(0.2, '#ff9000')};
+      color: ${shade(0.2, '#f4ede8')};
+      transform: translateX(-5px);
     }
 
     svg {

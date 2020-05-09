@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { FiLogIn, FiLock, FiMail } from 'react-icons/fi';
 
 import Input from '../../components/Input';
@@ -8,7 +9,7 @@ import { Container, LoginArea, Background } from './styles';
 
 import logo from '../../assets/logo.svg';
 
-const Signin: React.FC = () => (
+const SignIn: React.FC = () => (
   <Container>
     <LoginArea>
       <img src={logo} alt="GoBarber" />
@@ -21,13 +22,13 @@ const Signin: React.FC = () => (
         <a href="#">Esqueci minha senha</a>
       </form>
 
-      <a href="#">
+      <Link to="signup">
         <FiLogIn />
         Criar conta
-      </a>
+      </Link>
     </LoginArea>
     <Background />
   </Container>
 );
 
-export default Signin;
+export default SignIn;
