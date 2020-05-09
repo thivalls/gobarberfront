@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 interface InputProps {
   isFocused: boolean;
   isFilled: boolean;
+  isErrored: boolean;
 }
 
 export const ElementStyle = styled.div<InputProps>`
@@ -13,11 +14,20 @@ export const ElementStyle = styled.div<InputProps>`
   width: 100%;
   color: #666360;
 
+  display: flex;
+  align-items: center;
+
+  ${props =>
+    props.isErrored &&
+    css`
+      border-color: #c53030;
+    `}
+
   ${props =>
     props.isFocused &&
     css`
       color: #ff9000;
-      border: 2px solid #ff9000;
+      border-color: #ff9000;
     `}
 
   ${props =>
@@ -25,9 +35,6 @@ export const ElementStyle = styled.div<InputProps>`
     css`
       color: #ff9000;
     `}
-
-  display: flex;
-  align-items: center;
 
   & + div {
     margin-top: 8px;
