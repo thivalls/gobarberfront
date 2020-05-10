@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useContext } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 import { FiLogIn, FiLock, FiMail } from 'react-icons/fi';
@@ -6,7 +6,7 @@ import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 
 import setValidationErros from '../../utils/setValidationErrors';
-import { AuthContext } from '../../context/AuthContext';
+import { useAuth } from '../../hooks/AuthContext';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -22,7 +22,7 @@ interface SignInFormData {
 
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
-  const { signIn, user } = useContext(AuthContext);
+  const { signIn } = useAuth();
 
   const handleSubmit = useCallback(
     async (data: SignInFormData) => {
@@ -64,7 +64,7 @@ const SignIn: React.FC = () => {
           <Input name="email" icon={FiMail} placeholder="Email" />
           <Input name="password" icon={FiLock} placeholder="Senha" />
           <Button type="submit">Entrar</Button>
-          <a href="#">Esqueci minha senha</a>
+          <a href="/forgot">Esqueci minha senha</a>
         </Form>
 
         <Link to="signup">
