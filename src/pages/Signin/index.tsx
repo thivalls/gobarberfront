@@ -6,7 +6,8 @@ import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 
 import setValidationErros from '../../utils/setValidationErrors';
-import { useAuth } from '../../hooks/AuthContext';
+import { useAuth } from '../../hooks/auth';
+import { useToast } from '../../hooks/toast';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -23,6 +24,7 @@ interface SignInFormData {
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const { signIn } = useAuth();
+  const { addToast } = useToast();
 
   const handleSubmit = useCallback(
     async (data: SignInFormData) => {
@@ -42,16 +44,20 @@ const SignIn: React.FC = () => {
           abortEarly: false,
         });
 
-        signIn({
+        await signIn({
           email: data.email,
           password: data.password,
         });
       } catch (error) {
-        const errors = setValidationErros(error);
-        formRef.current?.setErrors(errors);
+        if (error instanceof Yup.ValidationError) {
+          const errors = setValidationErros(error);
+          formRef.current?.setErrors(errors);
+        }
+
+        addToast();
       }
     },
-    [signIn]
+    [signIn, addToast]
   );
 
   return (
