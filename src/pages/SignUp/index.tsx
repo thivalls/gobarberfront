@@ -9,7 +9,7 @@ import setValidationErrors from '../../utils/setValidationErrors';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
-import { Container, LoginArea, Background } from './styles';
+import { Container, LoginArea, AnimationLoginArea, Background } from './styles';
 
 import logo from '../../assets/logo.svg';
 
@@ -41,35 +41,37 @@ const SignUp: React.FC = () => {
     <Container>
       <Background />
       <LoginArea>
-        <img src={logo} alt="GoBarber" />
+        <AnimationLoginArea>
+          <img src={logo} alt="GoBarber" />
 
-        <Form ref={formRef} onSubmit={handleSubmit}>
-          <h1>Faça seu cadastro</h1>
-          <Input
-            name="name"
-            icon={FiUser}
-            placeholder="Nome"
-            autoComplete="off"
-          />
-          <Input
-            name="email"
-            icon={FiMail}
-            placeholder="Email"
-            autoComplete="off"
-          />
-          <Input
-            name="password"
-            icon={FiLock}
-            placeholder="Senha"
-            autoComplete="off"
-          />
-          <Button type="submit">Cadastrar</Button>
-        </Form>
+          <Form ref={formRef} onSubmit={handleSubmit}>
+            <h1>Faça seu cadastro</h1>
+            <Input
+              name="name"
+              icon={FiUser}
+              placeholder="Nome"
+              autoComplete="off"
+            />
+            <Input
+              name="email"
+              icon={FiMail}
+              placeholder="Email"
+              autoComplete="off"
+            />
+            <Input
+              name="password"
+              icon={FiLock}
+              placeholder="Senha"
+              autoComplete="off"
+            />
+            <Button type="submit">Cadastrar</Button>
+          </Form>
 
-        <Link to="signin">
-          <FiArrowLeft />
-          Já tenho cadastro
-        </Link>
+          <Link to="signin">
+            <FiArrowLeft />
+            Já tenho cadastro
+          </Link>
+        </AnimationLoginArea>
       </LoginArea>
     </Container>
   );

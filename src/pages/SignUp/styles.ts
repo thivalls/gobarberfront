@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { shade } from 'polished';
 
 import bgSignUp from '../../assets/sign-up-background.png';
@@ -19,12 +19,30 @@ export const Background = styled.div`
 export const LoginArea = styled.div`
   display: flex;
   flex-direction: column;
-
-  place-content: center;
+  justify-content: center;
   align-items: center;
-
   width: 100%;
   max-width: 700px;
+`;
+
+const appearFromRight = keyframes`
+from {
+  opacity: 0;
+  transform: translateX(50px);
+}
+
+to{
+  opacity: 1;
+  transform: translateX(0px);
+}
+`;
+
+export const AnimationLoginArea = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  animation: ${appearFromRight} 1s;
 
   form {
     margin: 80px 0;
