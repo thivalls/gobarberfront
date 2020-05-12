@@ -1,5 +1,5 @@
 import React, { useCallback, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
 import { FiLogIn, FiLock, FiMail } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
@@ -22,6 +22,7 @@ interface SignInFormData {
 }
 
 const SignIn: React.FC = () => {
+  const history = useHistory();
   const formRef = useRef<FormHandles>(null);
   const { signIn } = useAuth();
   const { addToast } = useToast();
@@ -48,6 +49,8 @@ const SignIn: React.FC = () => {
           email: data.email,
           password: data.password,
         });
+
+        history.push('/dashboard');
       } catch (error) {
         if (error instanceof Yup.ValidationError) {
           const errors = setValidationErros(error);
@@ -56,11 +59,13 @@ const SignIn: React.FC = () => {
         }
 
         addToast({
-          title: 'atenção este é um toast de info',
+          title: 'Falha ao fazer login',
+          type: 'error',
+          description: 'Verifique as credenciais.',
         });
       }
     },
-    [signIn, addToast]
+    [signIn, addToast, history]
   );
 
   return (
