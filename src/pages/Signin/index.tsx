@@ -54,7 +54,9 @@ const SignIn: React.FC = () => {
           formRef.current?.setErrors(errors);
         }
 
-        addToast();
+        addToast({
+          title: 'atenção este é um toast de info',
+        });
       }
     },
     [signIn, addToast]
